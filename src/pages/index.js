@@ -1,5 +1,6 @@
 
-import Head from 'next/head'
+import Head from 'next/head';
+import Link from 'next/link'
 import Title from '../../components/title'
 import { getProducts } from '../../lib/products'
 
@@ -10,13 +11,14 @@ export async function getStaticProps() {
 
   const products = await getProducts();
   return {
-    props: { products }
+    props: { products },
+    revalidate: 5 * 60
   }
 }
 
 
 export default function HomePage({ products }) {
-  console.log("Products in homepage",products);
+  console.log("Products in homepage", products);
   return (
     <>
       <Head>
@@ -29,7 +31,9 @@ export default function HomePage({ products }) {
         <ul>
           {products.map((product) => (
             <li key={product.id}>
+              <Link href={`products/${product.id}`}>
               {product.title}
+              </Link>
             </li>
           ))}
         </ul>
