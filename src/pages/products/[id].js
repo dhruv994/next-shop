@@ -9,17 +9,18 @@ export async function getStaticPaths() {
     }
 }
 export async function getStaticProps({ params: { id } }) {
+    const product = await getProduct(id);
     return {
         props: { product }
     }
 }
 import Head from "next/head"
 import Title from "../../../components/title"
-import { getProducts } from "../../../lib/products"
+import { getProduct, getProducts } from "../../../lib/products"
 
 // }
 
-export default function ProductPage() {
+export default function ProductPage({ product }) {
     //  console.log('productsPage', params)
     return (
         <>
@@ -29,7 +30,10 @@ export default function ProductPage() {
                 </title>
             </Head>
             <main className='p-2'>
-                <Title> Product</Title>
+                <Title> {product.title}</Title>
+                <p>
+                    {product.description}
+                </p>
             </main>
         </>
     )
