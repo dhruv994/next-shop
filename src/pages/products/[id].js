@@ -11,7 +11,9 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params: { id } }) {
     const product = await getProduct(id);
     return {
-        props: { product }
+        props: { product },
+        revalidate: 5 * 60
+
     }
 }
 import Head from "next/head"
