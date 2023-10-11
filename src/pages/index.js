@@ -7,18 +7,18 @@ import { getProducts } from '../../lib/products'
 
 
 export async function getStaticProps() {
-  console.log("Home Page [get static props]")
+  // console.log("Home Page [get static props]")
 
   const products = await getProducts();
   return {
     props: { products },
-    revalidate: 5 * 60
+    revalidate: 5 * process.env.REVALIDATE_SECONDS
   }
 }
 
 
 export default function HomePage({ products }) {
-  console.log("Products in homepage", products);
+  // console.log("Products in homepage", products);
   return (
     <>
       <Head>
