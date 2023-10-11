@@ -17,11 +17,16 @@ export async function getStaticProps({ params: { id } }) {
 
         }
     } catch (err) {
-        return { notFound: true }
+        if (err instanceof ApiError && err.status === 404) {
+
+            return { notFound: true }
+        }
+        throw err
     }
 }
 import Head from "next/head"
 import Title from "../../../components/title"
+import { ApiError } from "../../../lib/api";
 import { getProduct, getProducts } from "../../../lib/products"
 
 // }
