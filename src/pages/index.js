@@ -12,7 +12,7 @@ export async function getStaticProps() {
   const products = await getProducts();
   return {
     props: { products },
-    revalidate: 5 * process.env.REVALIDATE_SECONDS
+    revalidate: +process.env.REVALIDATE_SECONDS
   }
 }
 
@@ -32,7 +32,7 @@ export default function HomePage({ products }) {
           {products.map((product) => (
             <li key={product.id}>
               <Link href={`products/${product.id}`}>
-              {product.title}
+                {product.title}
               </Link>
             </li>
           ))}
