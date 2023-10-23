@@ -1,6 +1,7 @@
 
 import Head from 'next/head';
 import Link from 'next/link'
+import ProductCard from '../../components/ProductCard';
 import Title from '../../components/title'
 import { getProducts } from '../../lib/products'
 
@@ -28,12 +29,11 @@ export default function HomePage({ products }) {
       </Head>
       <main className='p-2'>
         <Title > Next Shop</Title>
-        <ul>
+        <ul className='grid grid-cols-3'>
           {products.map((product) => (
             <li key={product.id}>
-              <Link href={`products/${product.id}`}>
-                {product.title}
-              </Link>
+              <ProductCard product={product} />
+
             </li>
           ))}
         </ul>
