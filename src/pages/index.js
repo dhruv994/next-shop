@@ -1,9 +1,6 @@
 
-import Head from 'next/head';
-import Link from 'next/link'
 import Page from '../../components/Page';
 import ProductCard from '../../components/ProductCard';
-import Title from '../../components/title'
 import { getProducts } from '../../lib/products'
 
 

@@ -24,9 +24,8 @@ export async function getStaticProps({ params: { id } }) {
         throw err
     }
 }
-import Head from "next/head"
 import Image from "next/image";
-import Title from "../../../components/title"
+import Page from "../../../components/Page";
 import { ApiError } from "../../../lib/api";
 import { getProduct, getProducts } from "../../../lib/products"
 
@@ -36,13 +35,8 @@ export default function ProductPage({ product }) {
     //  console.log('productsPage', params)
     return (
         <>
-            <Head>
-                <title>
-                    Next Shop
-                </title>
-            </Head>
-            <main className='p-2'>
-                <Title> {product.title}</Title>
+        <Page title={product.title} >
+            
                 <div className="flex flex-col lg:flex-row">
                     <div>
 
@@ -59,7 +53,7 @@ export default function ProductPage({ product }) {
                     </div>
 
                 </div>
-            </main>
+          </Page>
         </>
     )
 
