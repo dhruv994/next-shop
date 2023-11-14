@@ -13,7 +13,7 @@ export async function getStaticProps({ params: { id } }) {
         const product = await getProduct(id);
         return {
             props: { product },
-            revalidate:  +process.env.REVALIDATE_SECONDS
+            revalidate: +process.env.REVALIDATE_SECONDS
 
         }
     } catch (err) {
@@ -25,6 +25,7 @@ export async function getStaticProps({ params: { id } }) {
     }
 }
 import Head from "next/head"
+import Image from "next/image";
 import Title from "../../../components/title"
 import { ApiError } from "../../../lib/api";
 import { getProduct, getProducts } from "../../../lib/products"
@@ -42,9 +43,22 @@ export default function ProductPage({ product }) {
             </Head>
             <main className='p-2'>
                 <Title> {product.title}</Title>
-                <p>
-                    {product.description}
-                </p>
+                <div className="flex flex-col lg:flex-row">
+                    <div>
+
+                        <Image src={product.pictureUrl} width={640} height={480} alt="" />
+                    </div>
+                    <div className="flex-1 lg:ml-4">
+                        <p className="text-sm">
+
+                        {product.description}
+                        </p>
+                        <p className="text-lg font-bold">
+                            {` $${product.price}`}
+                        </p>
+                    </div>
+
+                </div>
             </main>
         </>
     )

@@ -1,6 +1,7 @@
 
 import Head from 'next/head';
 import Link from 'next/link'
+import Page from '../../components/Page';
 import ProductCard from '../../components/ProductCard';
 import Title from '../../components/title'
 import { getProducts } from '../../lib/products'
@@ -21,14 +22,9 @@ export async function getStaticProps() {
 export default function HomePage({ products }) {
   // console.log("Products in homepage", products);
   return (
+
     <>
-      <Head>
-        <title>
-          Next Shop
-        </title>
-      </Head>
-      <main className='p-2'>
-        <Title > Next Shop</Title>
+      <Page title="Indoor Plants" >
         <ul className='grid grid-cols-1 lg:grid-cols-3 gap-4'>
           {products.map((product) => (
             <li key={product.id}>
@@ -37,7 +33,7 @@ export default function HomePage({ products }) {
             </li>
           ))}
         </ul>
-      </main>
+      </Page>
     </>
   )
 }
