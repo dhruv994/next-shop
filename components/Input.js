@@ -1,8 +1,9 @@
 export default function Input({type}){
     return(
         <>
-        <input type={type} className="border px-3 py-1"/>
+        <input type={type} className="border px-3 py-1 w-80"/>
         </>
 
     )
 }
+
