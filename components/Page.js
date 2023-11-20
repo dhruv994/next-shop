@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Title from './title';
-import ProductCard from './ProductCard';
 
 export default function Page({ title, children }) {
     return (
