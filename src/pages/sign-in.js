@@ -3,15 +3,21 @@ import Button from "../../components/Button";
 import Field from "../../components/Field";
 import Input from "../../components/input";
 import Page from "../../components/Page";
+import { fetchJSON } from "../../lib/api";
 
 export default function SignInPage() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log('Should submit',  { email, password })
+      const response = await fetchJSON('http://localhost:1337/auth/local', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ identifier: email, password  })
+        });
+        console.log('sign-in',response)
     }
 
     return (
@@ -33,4 +39,3 @@ export default function SignInPage() {
         </Page>
     )
 }
- 
