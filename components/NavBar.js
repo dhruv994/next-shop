@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 export default function NavBar(){
+    const user= undefined;
 
     return(
         <nav className="px-2 py-1 text-sm">
@@ -13,6 +14,12 @@ export default function NavBar(){
                     </Link>
                 </li>
                 <li role="seprator" className="flex-1"/>
+                {user ? (<>
+                <li>{user.name}</li>
+                <li>
+                    <button> Sign Out</button>
+                </li>
+                </>) : 
                 <li> 
                     <Link href="/sign-in">
                        
@@ -20,6 +27,7 @@ export default function NavBar(){
                        
                     </Link>
                 </li>   
+            }
             </ul>
         </nav>
     )
