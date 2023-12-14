@@ -1,9 +1,11 @@
 import { useState } from "react";
+
+import { fetchJson } from "../../lib/api";
+
 import Button from "../../components/Button";
 import Field from "../../components/Field";
 import Input from "../../components/input";
 import Page from "../../components/Page";
-import { fetchJSON } from "../../lib/api";
 
 
 function sleep(ms) {
@@ -20,17 +22,17 @@ export default function SignInPage() {
         setStatus({ loading: true, error: false });
         await sleep(2000);
         try {
-            const response = await fetchJSON('api/login', {
+            const response = await fetchJson('http://localhost:1337/auth/local', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({  email, password })
+                body: JSON.stringify({ identifier: email, password }),
             });
             setStatus({ loading: false, error: false });
 
-            console.log('sign-in', response)
+            console.log('sign-in******', response)
         } catch (err) {
+            console.log('sign-in ERR******', err)
             setStatus({ loading: false, error: true });
-
         }
     }
 
